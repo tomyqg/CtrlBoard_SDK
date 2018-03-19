@@ -14,18 +14,37 @@ bool ituFlowWindowUpdate(ITUWidget* widget, ITUEvent ev, int arg1, int arg2, int
 
     result = ituWidgetUpdateImpl(widget, ev, arg1, arg2, arg3);
 
-	if ((widget->type == ITU_WHEEL) && (ev == ITU_EVENT_LAYOUT))
+	if (((widget->type == ITU_WHEEL) || (widget->type == ITU_STEPWHEEL)) && (ev == ITU_EVENT_LAYOUT))
 	{
 		ITCTree* node;
 		ITUWidget* child;
 		ITURectangle* rect;
-		ITUWheel* wheel = (ITUWheel*)widget;
-		int size;
+		int size, cycle_tor, focus_c, fontHeight, focusFontHeight, layout_ci;
 
-		if (wheel->cycle_tor > 0)
+		if (widget->type == ITU_WHEEL)
 		{
-			ITUWidget* fc = (ITUWidget*)itcTreeGetChildAt(wheel, wheel->focus_c);
-			int fix_focus_font_size = ((wheel->focusFontHeight - wheel->fontHeight) / ITU_WHEEL_FOCUS_FONT_FIX_POS);
+			ITUWheel* wheel = (ITUWheel*)widget;
+			cycle_tor = wheel->cycle_tor;
+			focus_c = wheel->focus_c;
+			fontHeight = wheel->fontHeight;
+			focusFontHeight = wheel->focusFontHeight;
+			layout_ci = wheel->layout_ci;
+		}
+		else
+		{
+			ITUStepWheel* stepwheel = (ITUStepWheel*)widget;
+			cycle_tor = stepwheel->cycle_tor;
+			focus_c = stepwheel->focus_c;
+			fontHeight = stepwheel->fontHeight;
+			focusFontHeight = stepwheel->focusFontHeight;
+			layout_ci = stepwheel->layout_ci;
+		}
+
+
+		if (cycle_tor > 0)
+		{
+			ITUWidget* fc = (ITUWidget*)itcTreeGetChildAt(widget, focus_c);
+			int fix_focus_font_size = ((focusFontHeight - fontHeight) / ITU_WHEEL_FOCUS_FONT_FIX_POS);
 
 			size = fwin->borderSize;
 
@@ -37,9 +56,9 @@ bool ituFlowWindowUpdate(ITUWidget* widget, ITUEvent ev, int arg1, int arg2, int
 				//rect->y = size - wheel->layout_ci;
 
 				if (child == fc)
-					rect->y = size - wheel->layout_ci - fix_focus_font_size;
+					rect->y = size - layout_ci - fix_focus_font_size;
 				else
-					rect->y = size - wheel->layout_ci;
+					rect->y = size - layout_ci;
 
 				size = rect->y + rect->height;
 
@@ -52,7 +71,7 @@ bool ituFlowWindowUpdate(ITUWidget* widget, ITUEvent ev, int arg1, int arg2, int
 		}
 		else
 		{
-			size = fwin->borderSize + wheel->layout_ci;
+			size = fwin->borderSize + layout_ci;
 
 			for (node = widget->tree.child; node; node = node->sibling)
 			{

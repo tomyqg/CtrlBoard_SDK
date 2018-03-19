@@ -1,0 +1,4 @@
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/risc1_code/project/risc1_code/CMakeFiles/risc1_testcode.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/risc1_code/project/risc1_code/CMakeFiles/or32_crt0.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/risc1_code/project/risc1_code/CMakeFiles/default.ld.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/risc1_code/project/risc1_code/CMakeFiles/risc1_crt0.dir

@@ -74,6 +74,11 @@ void ituBackgroundDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
         }
         else if (desta > 0)
         {
+            ITUColor color, graidentColor;
+
+            ituSetColor(&color, 255, widget->color.red, widget->color.green, widget->color.blue);
+            ituSetColor(&graidentColor, 255, bg->graidentColor.red, bg->graidentColor.green, bg->graidentColor.blue);
+
         #if (CFG_CHIP_FAMILY == 9070)
             if ((widget->flags & ITU_STRETCH) && widget->tree.child && bg->orgWidth && bg->orgHeight)
             {
@@ -81,9 +86,9 @@ void ituBackgroundDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
                 if (bgSurf)
                 {
                     if (bg->graidentMode == ITU_GF_NONE)
-                        ituColorFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &widget->color);
+                        ituColorFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &color);
                     else
-                        ituGradientFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &widget->color, &bg->graidentColor, bg->graidentMode);
+                        ituGradientFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &color, &graidentColor, bg->graidentMode);
                 }
             }
             else
@@ -92,9 +97,9 @@ void ituBackgroundDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
                 if (surf)
                 {
                     if (bg->graidentMode == ITU_GF_NONE)
-                        ituColorFill(surf, 0, 0, rect->width, rect->height, &widget->color);
+                        ituColorFill(surf, 0, 0, rect->width, rect->height, &color);
                     else
-                        ituGradientFill(surf, 0, 0, rect->width, rect->height, &widget->color, &bg->graidentColor, bg->graidentMode);
+                        ituGradientFill(surf, 0, 0, rect->width, rect->height, &color, &graidentColor, bg->graidentMode);
 
                     ituAlphaBlend(dest, destx, desty, rect->width, rect->height, surf, 0, 0, desta);
                     ituDestroySurface(surf);
@@ -107,17 +112,17 @@ void ituBackgroundDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
                 if (bgSurf)
                 {
                     if (bg->graidentMode == ITU_GF_NONE)
-                        ituColorFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &widget->color);
+                        ituColorFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &color);
                     else
-                        ituGradientFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &widget->color, &bg->graidentColor, bg->graidentMode);
+                        ituGradientFill(bgSurf, 0, 0, bgSurf->width, bgSurf->height, &color, &graidentColor, bg->graidentMode);
                 }
             }
             else
             {
                 if (bg->graidentMode == ITU_GF_NONE)
-                    ituColorFillBlend(dest, destx, desty, rect->width, rect->height, &widget->color, true, true, desta);
+                    ituColorFillBlend(dest, destx, desty, rect->width, rect->height, &color, false, true, desta);
                 else
-                    ituGradientFillBlend(dest, destx, desty, rect->width, rect->height, &widget->color, &bg->graidentColor, bg->graidentMode, true, true, desta);
+                    ituGradientFillBlend(dest, destx, desty, rect->width, rect->height, &color, &graidentColor, bg->graidentMode, false, true, desta);
             }
         #endif
         }
@@ -459,7 +464,7 @@ void ituBackgroundDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
                 ITUWidget* child = (ITUWidget*)node;
 
                 if (child->visible && ituWidgetIsOverlapClipping(child, dest, destx, desty))
-                    ituWidgetDraw(node, surf, 0, 0, desta);
+                    ituWidgetDraw(node, surf, 0, 0, alpha);
 
                 child->dirty = false;
             }
@@ -483,6 +488,19 @@ void ituBackgroundDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
     }
     if (bgSurf)
         ituDestroySurface(bgSurf);
+
+    {
+        ITCTree* node;
+
+        for (node = widget->tree.child; node; node = node->sibling)
+        {
+            ITUWidget* child = (ITUWidget*)node;
+            if (child->visible && child->type == ITU_CLIPPER)
+            {
+                ituClipperPostDraw(child, dest, destx, desty, alpha);
+            }
+        }
+    }
 }
 
 void ituBackgroundInit(ITUBackground* bg)

@@ -96,6 +96,93 @@ extern ITUSurface *VideoSurf[2];
 //=============================================================================
 //				  Private Function Definition
 //=============================================================================
+static void argb8888toyuv420(char *yuv_dst, char *argb_src, int width, int height)
+{
+    int line, i = 0;
+    int u_pos = width * height;
+    int v_pos = u_pos + u_pos/4;
+    int pixel_count = 0;
+
+    for(line = 0; line < height; line++)
+    {
+        if(line % 2 == 0)
+        {
+            for(i = 0; i < width; i+=2)
+            {
+                char r, g, b;
+                b = argb_src[4 * pixel_count + 0];
+                g = argb_src[4 * pixel_count + 1];
+                r = argb_src[4 * pixel_count + 2];
+
+                yuv_dst[pixel_count++] = ((66*r + 129*g + 25*b) >> 8) + 16;
+                yuv_dst[u_pos++] = ((-38*r + -74*g + 112*b) >> 8) + 128;
+                yuv_dst[v_pos++] = ((112*r + -94*g + -18*b) >> 8) + 128;
+
+                b = argb_src[4 * pixel_count + 0];
+                g = argb_src[4 * pixel_count + 1];
+                r = argb_src[4 * pixel_count + 2];
+
+                yuv_dst[pixel_count++] = ((66*r + 129*g + 25*b) >> 8) + 16;
+            }
+        }
+        else
+        {
+            for(i = 0; i < width; i++)
+            {
+                char r, g, b;
+                b = argb_src[4 * pixel_count + 0];
+                g = argb_src[4 * pixel_count + 1];
+                r = argb_src[4 * pixel_count + 2];
+
+                yuv_dst[pixel_count++] = ((66*r + 129*g + 25*b) >> 8) + 16;
+            }
+        }
+    }
+}
+
+static void rgb888toyuv420(char *yuv_dst, char *rgb_src, int width, int height)
+{
+    int line, i = 0;
+    int u_pos = width * height;
+    int v_pos = u_pos + u_pos/4;
+    int pixel_count = 0;
+
+    for(line = 0; line < height; line++)
+    {
+        if(line % 2 == 0)
+        {
+            for(i = 0; i < width; i+=2)
+            {
+                char r, g, b;
+                r = rgb_src[3 * pixel_count];
+                g = rgb_src[3 * pixel_count + 1];
+                b = rgb_src[3 * pixel_count + 2];
+
+                yuv_dst[pixel_count++] = ((66*r + 129*g + 25*b) >> 8) + 16;
+                yuv_dst[u_pos++] = ((-38*r + -74*g + 112*b) >> 8) + 128;
+                yuv_dst[v_pos++] = ((112*r + -94*g + -18*b) >> 8) + 128;
+
+                r = rgb_src[3 * pixel_count];
+                g = rgb_src[3 * pixel_count + 1];
+                b = rgb_src[3 * pixel_count + 2];
+
+                yuv_dst[pixel_count++] = ((66*r + 129*g + 25*b) >> 8) + 16;
+            }
+        }
+        else
+        {
+            for(i = 0; i < width; i++)
+            {
+                char r, g, b;
+                r = rgb_src[3 * pixel_count];
+                g = rgb_src[3 * pixel_count + 1];
+                b = rgb_src[3 * pixel_count + 2];
+
+                yuv_dst[pixel_count++] = ((66*r + 129*g + 25*b) >> 8) + 16;
+            }
+        }
+    }
+}
 
 //=============================================================================
 //				  Public Function Definition
@@ -986,6 +1073,138 @@ end:
     return surf;
 }
 
+void ituJpegSaveFile(ITUSurface* surf, char* filepath)
+{
+    uint8_t* src = NULL;
+    uint8_t* yuv_data = NULL;
+    src = ituLockSurface(surf, 0, 0, surf->width, surf->height);
+    assert(src);
+
+    if (surf == ituGetDisplaySurface())
+    {
+        uint32_t addr;
+
+        switch (ithLcdGetFlip())
+        {
+        case 0:
+            addr = ithLcdGetBaseAddrA();
+            break;
+
+        case 1:
+            addr = ithLcdGetBaseAddrB();
+            break;
+
+        default:
+            addr = ithLcdGetBaseAddrC();
+            break;
+        }
+        src = ithMapVram(addr, surf->lockSize, ITH_VRAM_READ);
+    }
+
+    yuv_data = (char*) malloc (surf->width * surf->height * 3/2);
+
+    if (surf->format == ITU_ARGB8888)
+    {
+        argb8888toyuv420(yuv_data, src, surf->width, surf->height);
+    }
+    else if (surf->format == ITU_RGB565)
+    {
+        int h;
+        int size = surf->width * surf->height * 3;
+        uint8_t *rgb888 = malloc(size);
+        for (h = 0; h < surf->height; h++)
+        {
+            int i, j;
+            uint8_t* ptr = src + surf->width * 2 * h;
+
+            // color trasform from RGB565 to RGB888
+            for (i = (surf->width - 1) * 2, j = (surf->width - 1) * 3; i >= 0 && j >= 0; i -= 2, j -= 3)
+            {
+                rgb888[surf->width * h * 3 + j + 0] = ((ptr[i + 1]) & 0xf8) + ((ptr[i + 1] >> 5) & 0x07);
+                rgb888[surf->width * h * 3 + j + 1] = ((ptr[i + 0] >> 3) & 0x1c) + ((ptr[i + 1] << 5) & 0xe0) + ((ptr[i + 1] >> 1) & 0x3);
+                rgb888[surf->width * h * 3 + j + 2] = ((ptr[i + 0] << 3) & 0xf8) + ((ptr[i + 0] >> 2) & 0x07);
+            }
+        }
+
+        rgb888toyuv420(yuv_data, rgb888, surf->width, surf->height);
+        free(rgb888);
+    }
+
+
+    if(yuv_data)
+    {
+        HJPG            *pHJpeg        = 0;
+        JPG_INIT_PARAM  initParam      = {0};
+        JPG_STREAM_INFO inStreamInfo   = {0};
+        JPG_STREAM_INFO outStreamInfo  = {0};
+        JPG_BUF_INFO    entropyBufInfo = {0};
+        JPG_USER_INFO   jpgUserInfo    = {0};
+        uint32_t        jpgEncSize     = 0;
+                 
+        unsigned char *pAddr_y = 0, *pAddr_u = 0, *pAddr_v = 0;
+        pAddr_y = yuv_data;
+	    pAddr_u = yuv_data + (surf->width * surf->height);
+	    pAddr_v = pAddr_u + (surf->width * surf->height/4);
+        
+	    initParam.codecType = JPG_CODEC_ENC_JPG;
+	    initParam.outColorSpace = JPG_COLOR_SPACE_YUV420;
+
+        initParam.width         = surf->width;
+	    initParam.height        = surf->height;
+       
+		initParam.encQuality    = 70;//85;
+
+#if (CFG_CHIP_FAMILY == 9850)    
+        ithJpegSetTilingModeOnOff(0);
+#endif
+        
+		iteJpg_CreateHandle(&pHJpeg, &initParam, 0);
+		inStreamInfo.streamIOType         = JPG_STREAM_IO_READ;
+		inStreamInfo.streamType           = JPG_STREAM_MEM;
+		// Y
+		inStreamInfo.jstream.mem[0].pAddr = (uint8_t *)pAddr_y; //YUV_Save;
+		inStreamInfo.jstream.mem[0].pitch = surf->width;// src_w_out;
+
+		// U
+		inStreamInfo.jstream.mem[1].pAddr = (uint8_t *)pAddr_u; //(inStreamInfo.jstream.mem[0].pAddr+H264_pitch_y*src_h_out);
+		inStreamInfo.jstream.mem[1].pitch = surf->width/2;     //src_w_out/2;
+
+		// V
+		inStreamInfo.jstream.mem[2].pAddr = (uint8_t *)pAddr_v; //(inStreamInfo.jstream.mem[1].pAddr+H264_pitch_y*src_h_out);
+		inStreamInfo.jstream.mem[2].pitch = surf->width/2;     //src_w_out/2;
+
+		inStreamInfo.validCompCnt         = 3;
+
+        if (filepath)
+        {
+            outStreamInfo.streamType   = JPG_STREAM_FILE;
+            outStreamInfo.jstream.path = (void *)filepath;
+        }
+        outStreamInfo.streamIOType          = JPG_STREAM_IO_WRITE;
+        outStreamInfo.jpg_reset_stream_info = 0; //  _reset_stream_info;
+
+        iteJpg_SetStreamInfo(pHJpeg, &inStreamInfo, &outStreamInfo, 0);
+        iteJpg_GetStatus(pHJpeg, &jpgUserInfo, 0);
+    
+        iteJpg_Setup(pHJpeg, 0);
+
+        iteJpg_Process(pHJpeg, &entropyBufInfo, &jpgEncSize, 0);
+
+        iteJpg_GetStatus(pHJpeg, &jpgUserInfo, 0);
+        printf("\n\tresult = %d, encode size = %f KB\n", jpgUserInfo.status, (float)jpgEncSize / 1024);
+
+        iteJpg_DestroyHandle(&pHJpeg, 0);
+
+#if (CFG_CHIP_FAMILY == 9850)    
+        ithJpegSetTilingModeOnOff(1);
+#endif
+
+        free(yuv_data);
+    }
+    
+    ituUnlockSurface(surf);
+}
+
 #else
 ITUSurface *ituJpegLoad(int width, int height, uint8_t *data, int size, unsigned int flags)
 {
@@ -1003,6 +1222,15 @@ ITUSurface *ituJpegLoad(int width, int height, uint8_t *data, int size, unsigned
     jpeg_create_decompress(&cinfo);
     jpeg_mem_src(&cinfo, data, size);
     jpeg_read_header(&cinfo, TRUE);
+
+    if (width && height)
+    {
+        cinfo.scale_num = 1;
+        cinfo.scale_denom = ITH_MAX(cinfo.image_width / width, cinfo.image_height / height);
+        if (cinfo.scale_denom == 0)
+            cinfo.scale_denom = 1;
+    }
+
     jpeg_start_decompress(&cinfo);
 
     if (cinfo.output_components != 3)
@@ -1130,6 +1358,15 @@ ITUSurface *ituJpegLoadFile(int width, int height, char* filepath, unsigned int 
     jpeg_create_decompress(&cinfo);
     jpeg_stdio_src(&cinfo, f);
     jpeg_read_header(&cinfo, TRUE);
+
+    if (width && height)
+    {
+        cinfo.scale_num = 1;
+        cinfo.scale_denom = ITH_MAX(cinfo.image_width / width, cinfo.image_height / height);
+        if (cinfo.scale_denom == 0)
+            cinfo.scale_denom = 1;
+    }
+
     jpeg_start_decompress(&cinfo);
 
     if (cinfo.output_components != 3)
@@ -1187,4 +1424,112 @@ end:
 
     return surf;
 }
+
+void ituJpegSaveFile(ITUSurface* surf, char* filepath)
+{
+    FILE* fp = NULL;
+    struct jpeg_compress_struct cinfo;
+    struct jpeg_error_mgr jerr;
+    JSAMPROW row_pointer[1];
+    JSAMPLE* image_buffer = NULL;
+    int h;
+    uint8_t* src = NULL;
+
+    fp = fopen(filepath, "wb");
+    if (!fp)
+    {
+        LOG_ERR "open %s fail.\n", filepath LOG_END
+        goto end;
+    }
+
+    image_buffer = malloc(surf->width * surf->height * 3);
+    if (!image_buffer)
+        goto end;
+
+    cinfo.err = jpeg_std_error(&jerr);
+    jpeg_create_compress(&cinfo);
+    jpeg_stdio_dest(&cinfo, fp);
+    cinfo.image_width = surf->width;
+    cinfo.image_height = surf->height;
+    cinfo.input_components = 3;
+    cinfo.in_color_space = JCS_RGB;
+    jpeg_set_defaults(&cinfo);
+    jpeg_set_quality(&cinfo, 100, TRUE);
+    jpeg_start_compress(&cinfo, TRUE);
+
+    src = ituLockSurface(surf, 0, 0, surf->width, surf->height);
+    assert(src);
+
+    if (surf == ituGetDisplaySurface())
+    {
+        uint32_t addr;
+
+        switch (ithLcdGetFlip())
+        {
+        case 0:
+            addr = ithLcdGetBaseAddrA();
+            break;
+
+        case 1:
+            addr = ithLcdGetBaseAddrB();
+            break;
+
+        default:
+            addr = ithLcdGetBaseAddrC();
+            break;
+        }
+        src = ithMapVram(addr, surf->lockSize, ITH_VRAM_READ);
+    }
+
+    if (surf->format == ITU_ARGB8888)
+    {
+        for (h = 0; h < surf->height; h++)
+        {
+            int i, j;
+            uint8_t* ptr = src + surf->width * 4 * h;
+
+            // color trasform from ARGB8888 to RGB888
+            for (i = (surf->width - 1) * 4, j = (surf->width - 1) * 3; i >= 0 && j >= 0; i -= 4, j -= 3)
+            {
+                image_buffer[surf->width * h * 3 + j + 0] = ptr[i + 2];
+                image_buffer[surf->width * h * 3 + j + 1] = ptr[i + 1];
+                image_buffer[surf->width * h * 3 + j + 2] = ptr[i + 0];
+            }
+        }
+    }
+    else if (surf->format == ITU_RGB565)
+    {
+        for (h = 0; h < surf->height; h++)
+        {
+            int i, j;
+            uint8_t* ptr = src + surf->width * 2 * h;
+
+            // color trasform from RGB565 to RGB888
+            for (i = (surf->width - 1) * 2, j = (surf->width - 1) * 3; i >= 0 && j >= 0; i -= 2, j -= 3)
+            {
+                image_buffer[surf->width * h * 3 + j + 0] = ((ptr[i + 1]) & 0xf8) + ((ptr[i + 1] >> 5) & 0x07);
+                image_buffer[surf->width * h * 3 + j + 1] = ((ptr[i + 0] >> 3) & 0x1c) + ((ptr[i + 1] << 5) & 0xe0) + ((ptr[i + 1] >> 1) & 0x3);
+                image_buffer[surf->width * h * 3 + j + 2] = ((ptr[i + 0] << 3) & 0xf8) + ((ptr[i + 0] >> 2) & 0x07);
+            }
+        }
+    }
+
+    while (cinfo.next_scanline < cinfo.image_height)
+    {
+        row_pointer[0] = &image_buffer[cinfo.next_scanline * surf->width * 3];
+        (void)jpeg_write_scanlines(&cinfo, row_pointer, 1);
+    }
+
+    jpeg_finish_compress(&cinfo);
+    jpeg_destroy_compress(&cinfo);
+    ituUnlockSurface(surf);
+
+end:
+    if (image_buffer)
+        free(image_buffer);
+
+    if (fp)
+        fclose(fp);
+}
+
 #endif // !defined(_WIN32) && defined(CFG_JPEG_HW_ENABLE)

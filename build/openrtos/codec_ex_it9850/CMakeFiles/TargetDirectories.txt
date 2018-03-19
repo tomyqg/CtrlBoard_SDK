@@ -1,0 +1,5 @@
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec_ex_it9850/sdk/codec_ex/wiegand/CMakeFiles/wiegand.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec_ex_it9850/project/codec_ex_it9850/CMakeFiles/ticktimer.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec_ex_it9850/project/codec_ex_it9850/CMakeFiles/or32_crt0.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec_ex_it9850/project/codec_ex_it9850/CMakeFiles/default.ld.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec_ex_it9850/project/codec_ex_it9850/CMakeFiles/codec_crt0.dir

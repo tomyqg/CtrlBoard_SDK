@@ -212,25 +212,28 @@ bool ituSceneUpdate(ITUScene *scene, ITUEvent ev, int arg1, int arg2, int arg3)
 
     if (ev < ITU_EVENT_CUSTOM)
     {
-        // flush action queue
-        result |= ituFlushActionQueue(scene->actionQueue, &scene->actionQueueLen);
-
         // execute delay queue
-        ituExecDelayQueue(scene->delayQueue);
-
-        // execute delayed commands
-        for (i = 0; i < ITU_COMMAND_SIZE; i++)
+        if (ev == ITU_EVENT_TIMER)
         {
-            ITUCommand *cmd = &scene->commands[i];
-            if (cmd->delay > 0)
+            ituExecDelayQueue(scene->delayQueue);
+
+            // execute delayed commands
+            for (i = 0; i < ITU_COMMAND_SIZE; i++)
             {
-                if (--cmd->delay == 0)
+                ITUCommand *cmd = &scene->commands[i];
+                if (cmd->delay > 0)
                 {
-                    cmd->func(cmd->arg);
-                    result = true;
+                    if (--cmd->delay == 0)
+                    {
+                        cmd->func(cmd->arg);
+                        result = true;
+                    }
                 }
             }
         }
+
+        // flush action queue
+        result |= ituFlushActionQueue(scene->actionQueue, &scene->actionQueueLen);
     }
 
     if (ev == ITU_EVENT_MOUSEUP)

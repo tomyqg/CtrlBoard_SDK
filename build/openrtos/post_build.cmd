@@ -8,6 +8,19 @@ if exist %CFG_PROJECT%/project/%TARGET%/%TARGET% del %CFG_PROJECT%\project\%TARG
 
 set PROJECT_NAME=%CFG_PROJECT%
 
+if "%ALT_CPU_IT9850%" == "1" (
+    if "%MAKECLEAN%"=="1" (
+        if exist alt_cpu_it9850\CMakeFiles (
+            del /f/q/s alt_cpu_it9850\CMakeFiles
+            rd /q/s alt_cpu_it9850\CMakeFiles
+        )
+        if exist alt_cpu_it9850\CMakeCache.txt (
+            del /f/q/s alt_cpu_it9850\CMakeCache.txt
+        )
+    )
+    call :buildProject alt_cpu_it9850
+)
+
 if "%CODEC%" == "1" (
     if "%MAKECLEAN%"=="1" (
         if exist risc1_code\CMakeFiles (
@@ -93,19 +106,6 @@ if "%CODEC_EX_IT9850%" == "1" (
         )
     )
     call :buildProject codec_ex_it9850
-)
-
-if "%ALT_CPU_IT9850%" == "1" (
-    if "%MAKECLEAN%"=="1" (
-        if exist alt_cpu_it9850\CMakeFiles (
-            del /f/q/s alt_cpu_it9850\CMakeFiles
-            rd /q/s alt_cpu_it9850\CMakeFiles
-        )
-        if exist alt_cpu_it9850\CMakeCache.txt (
-            del /f/q/s alt_cpu_it9850\CMakeCache.txt
-        )
-    )
-    call :buildProject alt_cpu_it9850
 )
 
 if "%RISC_TEST%" == "1" (

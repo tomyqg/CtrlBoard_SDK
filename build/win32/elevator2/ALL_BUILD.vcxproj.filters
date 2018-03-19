@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

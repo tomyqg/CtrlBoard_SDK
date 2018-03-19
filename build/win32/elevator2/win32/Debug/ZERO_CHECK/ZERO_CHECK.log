@@ -1,0 +1,40 @@
+﻿生成启动时间为 2018/1/26 17:40:31。
+     1>项目“D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\build\win32\elevator2\ZERO_CHECK.vcxproj”在节点 2 上(Build 个目标)。
+     1>CustomBuild:
+         Checking Build System
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/audio/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/bt/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/i2s/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/iic/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/ith/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/itp/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/risc/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/sd/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/driver/spi/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/audio_mgr/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/fat/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/freetype/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/iniparser/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/itc/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/itu/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/jpeg/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/png/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/redblack/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/sdl/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/ucl/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/upgrade/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/sdk/share/zlib/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/win32/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/win32/boot/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/win32/ptw32/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/project/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/win32/elevator2/project/elevator2/CMakeFiles/generate.stamp is up-to-date.
+     1>已完成生成项目“D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\build\win32\elevator2\ZERO_CHECK.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.29

@@ -11,7 +11,7 @@
 
 static mqd_t extQueue = -1;
 static pthread_t extTask;
-static ExternalOrientation extOrientation;
+ExternalOrientation extOrientation;
 static bool extQuit;
 
 static void* ExternalCheckTask(void* arg)

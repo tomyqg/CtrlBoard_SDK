@@ -14,7 +14,7 @@
 #include "ite/itu.h"
 #include "itu_private.h"
 
-#define MAX_SBIT_CACHE 512
+#define MAX_SBIT_CACHE 128
 
 /* this simple record is used to model a given `installed' face */
 typedef struct
@@ -690,8 +690,7 @@ int ituFtDrawText(ITUSurface* surf, int x, int y, const char* text)
 
                 if (glyph->format == FT_GLYPH_FORMAT_OUTLINE)
                 {
-                    //error = FT_Glyph_To_Bitmap(&glyph, tfont->render_mode, NULL, 0);
-                    error = FT_Outline_Embolden(&face->glyph->outline, 2 * 64);
+                    error = FT_Glyph_To_Bitmap(&glyph, tfont->render_mode, NULL, 0);
                     if (error)
                     {
                         LOG_ERR "FT_Glyph_To_Bitmap fail: %d\n", error LOG_END
@@ -699,7 +698,8 @@ int ituFtDrawText(ITUSurface* surf, int x, int y, const char* text)
                         continue;
                     }
                 }
-                else if (glyph->format == FT_GLYPH_FORMAT_BITMAP)
+                
+                if (glyph->format == FT_GLYPH_FORMAT_BITMAP)
                 {
                     FT_BitmapGlyph  bitmap = (FT_BitmapGlyph)glyph;
                     FT_Bitmap*      source = &bitmap->bitmap;
@@ -737,10 +737,10 @@ int ituFtDrawText(ITUSurface* surf, int x, int y, const char* text)
                                 format = ITU_GLYPH_8BPP;
                                 break;
                             }
-	                        yy = y + tfont->scaler.height - sbit->top;
+                            yy = y + tfont->scaler.height - source->rows;
 	                        if (yy < 0)
 	                            yy = 0;
-	                        ituDrawGlyph(surf, x + x_advance + sbit->left, yy, format, sbit->buffer, sbit->width, sbit->height);
+                            ituDrawGlyph(surf, x + x_advance + bitmap->left, yy, format, source->buffer, source->width, source->rows);
                         }
                     }
                 }

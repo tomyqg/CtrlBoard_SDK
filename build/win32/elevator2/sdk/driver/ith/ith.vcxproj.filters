@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_chipid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_clock.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_isp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_dma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_host.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_interrupt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_interrupt_handler.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_printf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_pwm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_timer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_utility.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9850\ith_cmdq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9070\ith_lcd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9070\ith_gpio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9070\ith_gpio_handler.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9070\ith_fpc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_uart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_card.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_watchdog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_vmem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\include\ite\ith_defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\include\ite\ith.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\ith_cfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9850\ith_cmdq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\it9070\ith_lcd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\sdk\driver\ith\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6A2B9933-0874-40BA-B22A-94F05C831157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{86650EAC-288A-471A-9384-300979CF1B10}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -182,7 +182,7 @@ static void LoadScene(void)
     // load itu file
     tick1 = SDL_GetTicks();
 
-    orientation = ExternalGetOrientation();
+   // orientation = ExternalGetOrientation();
     if (orientation == EXTERNAL_VERTICAL)
     {
         ituSceneLoadFile(&theScene, CFG_PUBLIC_DRIVE ":/" CFG_RES_PATH "/elevator_v.itu");
@@ -609,7 +609,16 @@ int SceneRun(void)
                     
                 case SDLK_f:
                     break;
-
+				
+				case SDLK_h:
+				orientation = EXTERNAL_HORIZONTAL;
+				LoadScene();
+				break;
+				
+				case SDLK_v:			
+				orientation = EXTERNAL_VERTICAL;
+				LoadScene();
+				break;
             #endif // _WIN32
                 }
                 break;

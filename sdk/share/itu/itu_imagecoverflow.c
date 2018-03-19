@@ -204,6 +204,8 @@ bool ituImageCoverFlowUpdate(ITUWidget* widget, ITUEvent ev, int arg1, int arg2,
                 char* filepath = strdup(imagecoverflow->filePath);
 				char* ext = strrchr(filepath, '.');
 
+                icon->widget.flags |= ITU_FIT_TO_RECT;
+
 				if (stricmp(ext, ".png") == 0)
 					ituIconLoadPngData(icon, imagecoverflow->imageData, imagecoverflow->imageSize);
 				else
@@ -329,15 +331,23 @@ void ituImageCoverFlowOnAction(ITUWidget* widget, ITUActionType action, char* pa
 
 void ituImageCoverFlowReload(ITUImageCoverFlow* imagecoverflow)
 {
+	int retry_max_count = 30;
     ITUCoverFlow* coverflow = (ITUCoverFlow*) imagecoverflow;
     assert(imagecoverflow);
     ITU_ASSERT_THREAD();
 
-    if ((coverflow->coverFlowFlags & ITU_IMAGECOVERFLOW_BUSYING) ||
-        (coverflow->coverFlowFlags & ITU_IMAGECOVERFLOW_DESTROYING))
-    {
-        return;
-    }
+	while (((coverflow->coverFlowFlags & ITU_IMAGECOVERFLOW_BUSYING) ||
+		(coverflow->coverFlowFlags & ITU_IMAGECOVERFLOW_DESTROYING)) && (retry_max_count > 0))
+	{
+		usleep(10000);
+		retry_max_count--;
+	}
+
+	if ((coverflow->coverFlowFlags & ITU_IMAGECOVERFLOW_BUSYING) ||
+		(coverflow->coverFlowFlags & ITU_IMAGECOVERFLOW_DESTROYING))
+	{
+		return;
+	}
 
     if (strlen(imagecoverflow->path) > 0)
     {

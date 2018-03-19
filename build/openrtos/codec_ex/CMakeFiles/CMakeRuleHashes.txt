@@ -1,0 +1,9 @@
+# Hashes of file build rules.
+b386886886071c8845491ce139291125 lib/sm32/codec_crt0.o
+fa418e72b08faa08fa89bf1a321fab7a lib/sm32/default.ld
+47835d623c459241f842f4b394f99210 lib/sm32/or32_crt0.o
+22da004bdc011435b009811b49bb7752 lib/sm32/ticktimer.o
+bdaef5c64f1f7f16bfb0253df44bcecb project/codec_ex/CMakeFiles/codec_crt0
+bdaef5c64f1f7f16bfb0253df44bcecb project/codec_ex/CMakeFiles/default.ld
+bdaef5c64f1f7f16bfb0253df44bcecb project/codec_ex/CMakeFiles/or32_crt0
+bdaef5c64f1f7f16bfb0253df44bcecb project/codec_ex/CMakeFiles/ticktimer

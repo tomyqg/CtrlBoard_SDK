@@ -1,0 +1,7 @@
+# Hashes of file build rules.
+1c7b9b5b7767d8bb1947b63311f47aff lib/sm32/default.ld
+0036482dd09619b964b70a5e4c2a169e lib/sm32/or32_crt0.o
+3a60821cce7c95ac5ec179323994760b lib/sm32/risc1_crt0.o
+5765848c568cd0bbe5b727df4298cb77 project/risc1_code/CMakeFiles/default.ld
+5765848c568cd0bbe5b727df4298cb77 project/risc1_code/CMakeFiles/or32_crt0
+5765848c568cd0bbe5b727df4298cb77 project/risc1_code/CMakeFiles/risc1_crt0

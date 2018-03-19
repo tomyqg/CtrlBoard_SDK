@@ -1,0 +1,12 @@
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/wavcodec/CMakeFiles/wave.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/amrcodec/CMakeFiles/amrcodec.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/eac3decode/CMakeFiles/eac3decode.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/aacdecode/CMakeFiles/aacdecode.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/mp3decode/CMakeFiles/mp3decode.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/project/codec/CMakeFiles/ticktimer.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/flacdecode/CMakeFiles/flacdecode.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/wmadecode/CMakeFiles/wmadecode.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/project/codec/CMakeFiles/or32_crt0.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/project/codec/CMakeFiles/default.ld.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/project/codec/CMakeFiles/codec_crt0.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/codec/sdk/codec/tsdemux/CMakeFiles/tsdemux.plugin.dir

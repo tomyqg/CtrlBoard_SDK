@@ -133,7 +133,11 @@ void ituAudioPlay(ITUAudio* audio)
     assert(audio);
     ITU_ASSERT_THREAD();
 
-    if ((audio->widget.flags & ITU_ENABLED) == 0)
+    if ((audio->widget.flags & ITU_ENABLED) == 0 
+        #ifdef CFG_BUILD_AUDIO_MGR
+            || (smtkAudioMgrGetState() == SMTK_AUDIO_PLAY)
+        #endif
+        )
         return;
 
     LOG_DBG "playing %s\n", audio->filePath LOG_END

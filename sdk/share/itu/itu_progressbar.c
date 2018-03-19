@@ -133,7 +133,18 @@ void ituProgressBarDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8
 
             if (width > 0)
             {
-				ituSurfaceSetClipping(dest, destx, desty, width, rect->height);
+                int clipx = destx;
+                int clipy = desty;
+
+                if (dest->flags & ITU_CLIPPING)
+                {
+                    if (clipx < dest->clipping.x)
+                        clipx = dest->clipping.x;
+
+                    if (clipy < dest->clipping.y)
+                        clipy = dest->clipping.y;
+                }
+                ituSurfaceSetClipping(dest, clipx, clipy, width, rect->height);
 
                 if (bar->barSurf)
                 {
@@ -184,7 +195,18 @@ void ituProgressBarDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8
 
             if (height > 0)
             {
-				ituSurfaceSetClipping(dest, destx, desty + rect->height - height, rect->width, height);
+                int clipx = destx;
+                int clipy = desty;
+
+                if (dest->flags & ITU_CLIPPING)
+                {
+                    if (clipx < dest->clipping.x)
+                        clipx = dest->clipping.x;
+
+                    if (clipy < dest->clipping.y)
+                        clipy = dest->clipping.y;
+                }
+                ituSurfaceSetClipping(dest, clipx, clipy + rect->height - height, rect->width, height);
 
                 if (bar->barSurf)
                 {

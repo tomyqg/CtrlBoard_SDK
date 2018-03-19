@@ -1,0 +1,7 @@
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/sdk/alt_cpu/rslMaster/CMakeFiles/rslMaster.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/sdk/alt_cpu/rslSlave/CMakeFiles/rslSlave.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/project/alt_cpu_it9850/CMakeFiles/alt_cpu_crt0.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/project/alt_cpu_it9850/CMakeFiles/ticktimer.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/sdk/alt_cpu/swPwm/CMakeFiles/swPwm.plugin.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/project/alt_cpu_it9850/CMakeFiles/gpio.dir
+D:/Carstor3/ControlBoard/SDK/20171106_Ctrlboard_SDK_v2.2.8.1_438a19/ITE_Castor3_SDK/build/openrtos/alt_cpu_it9850/project/alt_cpu_it9850/CMakeFiles/default.ld.dir

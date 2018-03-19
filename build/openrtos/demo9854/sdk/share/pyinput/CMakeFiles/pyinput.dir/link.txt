@@ -1,0 +1,2 @@
+C:/ITEGCC/bin/arm-none-eabi-ar.exe cq ../../../lib/fa626/libpyinput.a  CMakeFiles/pyinput.dir/HZ_input.c.obj CMakeFiles/pyinput.dir/JY_input.c.obj
+C:/ITEGCC/bin/arm-none-eabi-ranlib.exe ../../../lib/fa626/libpyinput.a

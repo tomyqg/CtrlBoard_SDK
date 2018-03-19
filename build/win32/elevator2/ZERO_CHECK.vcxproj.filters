@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Carstor3\ControlBoard\SDK\20171106_Ctrlboard_SDK_v2.2.8.1_438a19\ITE_Castor3_SDK\build\win32\elevator2\CMakeFiles\d390cd8e1df21182f14143f7a471131a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{AC5DF9F7-8B84-4F63-8981-A39FE046E652}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

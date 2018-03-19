@@ -1170,7 +1170,7 @@ void ituScaleCoverFlowInit(ITUScaleCoverFlow* scaleCoverFlow, ITULayout layout)
 
     ituCoverFlowInit(&scaleCoverFlow->coverFlow, layout);
 
-    ituWidgetSetType(scaleCoverFlow, ITU_IMAGECOVERFLOW);
+    ituWidgetSetType(scaleCoverFlow, ITU_SCALECOVERFLOW);
     ituWidgetSetName(scaleCoverFlow, scaleCoverFlowName);
     ituWidgetSetUpdate(scaleCoverFlow, ituScaleCoverFlowUpdate);
     ituWidgetSetDraw(scaleCoverFlow, ituScaleCoverFlowDraw);

@@ -11,6 +11,8 @@ include_directories(
     )
 
 add_library(leaf STATIC
-    leaf_mediastream.c
+    eaf_mdiastream.c
     )
     
+  
+  

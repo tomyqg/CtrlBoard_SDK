@@ -295,6 +295,94 @@ void ituAnimationDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_t
         y += widget->rect.y;
         alpha = alpha * widget->alpha / 255;
 
+        if ((animation->animationFlags & ITU_ANIM_MOTION_BLUR) && (animation->frame > 0))
+        {
+            int frame = animation->frame - 1;
+            ITUWidget* target = NULL;
+
+            if (animation->animationFlags & ITU_ANIM_REVERSE)
+            {
+                if (animation->keyframe > 0)
+                    target = (ITUWidget*)itcTreeGetChildAt(animation, animation->keyframe - 1);
+
+                if (!target && (animation->animationFlags & ITU_ANIM_CYCLE))
+                {
+                    int count = itcTreeGetChildCount(animation);
+                    target = (ITUWidget*)itcTreeGetChildAt(animation, count - 1);
+                }
+            }
+            else
+            {
+                target = (ITUWidget*)itcTreeGetChildAt(animation, animation->keyframe + 1);
+                if (!target && (animation->animationFlags & ITU_ANIM_CYCLE))
+                {
+                    target = (ITUWidget*)itcTreeGetChildAt(animation, 0);
+                }
+            }
+
+            if (target)
+            {
+                ITURectangle currRect;
+
+                memcpy(&currRect, &animation->child->rect, sizeof (ITURectangle));
+
+                if (animation->animationFlags & ITU_ANIM_MOVE)
+                {
+                    animation->child->rect.x = animation->keyRect.x + (target->rect.x - animation->keyRect.x) * frame / animation->totalframe;
+                    animation->child->rect.y = animation->keyRect.y + (target->rect.y - animation->keyRect.y) * frame / animation->totalframe;
+                }
+                else if (animation->animationFlags & ITU_ANIM_EASE_IN)
+                {
+                    float step = (float)frame / animation->totalframe;
+                    step = step * step * step;
+                    animation->child->rect.x = animation->keyRect.x + (int)((target->rect.x - animation->keyRect.x) * step);
+                    animation->child->rect.y = animation->keyRect.y + (int)((target->rect.y - animation->keyRect.y) * step);
+                }
+                else if (animation->animationFlags & ITU_ANIM_EASE_OUT)
+                {
+                    float step = (float)frame / animation->totalframe;
+                    step = step - 1;
+                    step = step * step * step + 1;
+                    animation->child->rect.x = animation->keyRect.x + (int)((target->rect.x - animation->keyRect.x) * step);
+                    animation->child->rect.y = animation->keyRect.y + (int)((target->rect.y - animation->keyRect.y) * step);
+                }
+                if (animation->animationFlags & ITU_ANIM_SCALE)
+                {
+                    if (!(animation->animationFlags & ITU_ANIM_MOVE) && !(animation->animationFlags & ITU_ANIM_EASE_IN) && !(animation->animationFlags & ITU_ANIM_EASE_OUT) && (animation->animationFlags & ITU_ANIM_SCALE_CENTER))
+                    {
+                        animation->child->rect.x = animation->keyRect.x - (target->rect.width - animation->keyRect.width) / 2 * frame / animation->totalframe;
+                        animation->child->rect.y = animation->keyRect.y - (target->rect.height - animation->keyRect.height) / 2 * frame / animation->totalframe;
+                        animation->child->rect.width = animation->keyRect.width + (target->rect.width - animation->keyRect.width) * frame / animation->totalframe;
+                        animation->child->rect.height = animation->keyRect.height + (target->rect.height - animation->keyRect.height) * frame / animation->totalframe;
+                    }
+                    else if (animation->animationFlags & ITU_ANIM_EASE_IN)
+                    {
+                        float step = (float)frame / animation->totalframe;
+                        step = step * step * step;
+                        animation->child->rect.width = animation->keyRect.width + (int)((target->rect.width - animation->keyRect.width) * step);
+                        animation->child->rect.height = animation->keyRect.height + (int)((target->rect.height - animation->keyRect.height) * step);
+                    }
+                    else if (animation->animationFlags & ITU_ANIM_EASE_OUT)
+                    {
+                        float step = (float)frame / animation->totalframe;
+                        step = step - 1;
+                        step = step * step * step + 1;
+                        animation->child->rect.width = animation->keyRect.width + (int)((target->rect.width - animation->keyRect.width) * step);
+                        animation->child->rect.height = animation->keyRect.height + (int)((target->rect.height - animation->keyRect.height) * step);
+                    }
+                    else
+                    {
+                        animation->child->rect.width = animation->keyRect.width + (target->rect.width - animation->keyRect.width) * frame / animation->totalframe;
+                        animation->child->rect.height = animation->keyRect.height + (target->rect.height - animation->keyRect.height) * frame / animation->totalframe;
+                        //printf("n=%s c=%d/%d t=%d/%d k=%d/%d f=%d/%d\n", target->name, animation->child->rect.width, animation->child->rect.height, target->rect.width, target->rect.height, animation->keyRect.width, animation->keyRect.height, frame, animation->totalframe);
+                    }
+                }
+                ituWidgetDraw(animation->child, dest, x, y, alpha / 5);
+
+                memcpy(&animation->child->rect, &currRect, sizeof (ITURectangle));
+            }
+        }
+
         ituWidgetDraw(animation->child, dest, x, y, alpha);
 
         ituSurfaceSetClipping(dest, prevClip.x, prevClip.y, prevClip.width, prevClip.height);

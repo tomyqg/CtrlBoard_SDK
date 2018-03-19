@@ -1,0 +1,9 @@
+# Hashes of file build rules.
+489c8197980311bbda858d0c697283c3 lib/sm32/alt_cpu_crt0.o
+e7acc62894fdc5b5b4d1cdffb28a1436 lib/sm32/default.ld
+df54cf0afff1977b908171eb4bcd7cb0 lib/sm32/gpio.o
+fea397ae6c9a1c4e03dac8ebc24bd813 lib/sm32/ticktimer.o
+306c15aa0e292aa6a082c93d6aa58cbb project/alt_cpu_it9850/CMakeFiles/alt_cpu_crt0
+306c15aa0e292aa6a082c93d6aa58cbb project/alt_cpu_it9850/CMakeFiles/default.ld
+306c15aa0e292aa6a082c93d6aa58cbb project/alt_cpu_it9850/CMakeFiles/gpio
+306c15aa0e292aa6a082c93d6aa58cbb project/alt_cpu_it9850/CMakeFiles/ticktimer
