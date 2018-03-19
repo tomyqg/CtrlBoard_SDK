@@ -523,7 +523,7 @@ void ituButtonSetPressed(ITUButton* btn, bool pressed)
         {
             ituWidgetSetColor(widget, btn->focusColor.alpha, btn->focusColor.red, btn->focusColor.green, btn->focusColor.blue);
         }
-        else
+        else if (btn->bgColor.alpha > 0)
         {
             ituWidgetSetColor(widget, btn->bgColor.alpha, btn->bgColor.red, btn->bgColor.green, btn->bgColor.blue);
         }

@@ -107,153 +107,50 @@ void ituUnPressWidgetImpl(ITUWidget* widget)
 
 void ituScreenshot(ITUSurface* surf, char* filepath)
 {
-    int pos, w, h;
+    FILE* fp;
 
     ITU_ASSERT_THREAD();
 
-    pos = strlen(filepath) - 3;
-    if (pos < 0)
-        pos = 0;
-
-    w = surf->width;
-    h = surf->height;
-
-    if (ituScene->rotation == ITU_ROT_90 || ituScene->rotation == ITU_ROT_270)
+    fp = fopen(filepath, "wb");
+    if (fp)
     {
-        surf->width = h;
-        surf->height = w;
-    }
-
-    if (stricmp(&filepath[pos], "jpg") == 0)
-    {
-        ituJpegSaveFile(surf, filepath);
-    }
-    else if (stricmp(&filepath[pos], "png") == 0)
-    {
-        ituPngSaveFile(surf, filepath);
-    }
-    else
-    {
-        FILE* fp = fopen(filepath, "wb");
-        if (fp)
+        int size = surf->width * surf->height * 3;
+        uint8_t *dest = malloc(size);
+        if (dest)
         {
-            int size = surf->width * surf->height * 3;
-            uint8_t *dest = malloc(size);
-            if (dest)
+            int h;
+            uint8_t* src = ituLockSurface(surf, 0, 0, surf->width, surf->height);
+            assert(src);
+
+            sprintf(dest, "P6\n%d\n%d\n255\n", surf->width, surf->height);
+            fwrite(dest, 1, strlen(dest), fp);
+
+            for (h = 0; h < surf->height; h++) 
             {
-                int h;
-                uint8_t* src = ituLockSurface(surf, 0, 0, surf->width, surf->height);
-                assert(src);
+                int i, j;
+                uint8_t* ptr = src + surf->width * 2 * h;
 
-                if (surf == ituGetDisplaySurface())
+                // color trasform from RGB565 to RGB888
+                for (i = (surf->width-1)*2, j = (surf->width-1)*3; i >= 0 && j >= 0; i -= 2, j -= 3)
                 {
-                    uint32_t addr;
-
-                    switch (ithLcdGetFlip())
-                    {
-                    case 0:
-                        addr = ithLcdGetBaseAddrA();
-                        break;
-
-                    case 1:
-                        addr = ithLcdGetBaseAddrB();
-                        break;
-
-                    default:
-                        addr = ithLcdGetBaseAddrC();
-                        break;
-                    }
-                    src = ithMapVram(addr, surf->lockSize, ITH_VRAM_READ);
+                    dest[surf->width * h * 3 + j+0] = ((ptr[i+1]     ) & 0xf8) + ((ptr[i+1] >> 5) & 0x07);
+                    dest[surf->width * h * 3 + j+1] = ((ptr[i+0] >> 3) & 0x1c) + ((ptr[i+1] << 5) & 0xe0) + ((ptr[i+1] >> 1) & 0x3);
+                    dest[surf->width * h * 3 + j+2] = ((ptr[i+0] << 3) & 0xf8) + ((ptr[i+0] >> 2) & 0x07);
                 }
-
-                sprintf(dest, "P6\n%d\n%d\n255\n", surf->width, surf->height);
-                fwrite(dest, 1, strlen(dest), fp);
-
-                if (surf->format == ITU_ARGB8888)
-                {
-                    for (h = 0; h < surf->height; h++)
-                    {
-                        int i, j;
-                        uint8_t* ptr = src + surf->width * 4 * h;
-
-                        // color trasform from ARGB8888 to RGB888
-                        for (i = (surf->width - 1) * 4, j = (surf->width - 1) * 3; i >= 0 && j >= 0; i -= 4, j -= 3)
-                        {
-                            dest[surf->width * h * 3 + j + 0] = ptr[i + 2];
-                            dest[surf->width * h * 3 + j + 1] = ptr[i + 1];
-                            dest[surf->width * h * 3 + j + 2] = ptr[i + 0];
-                        }
-                    }
-                }
-                else if (surf->format == ITU_RGB565)
-                {
-                    for (h = 0; h < surf->height; h++)
-                    {
-                        int i, j;
-                        uint8_t* ptr = src + surf->width * 2 * h;
-
-                        // color trasform from RGB565 to RGB888
-                        for (i = (surf->width - 1) * 2, j = (surf->width - 1) * 3; i >= 0 && j >= 0; i -= 2, j -= 3)
-                        {
-                            dest[surf->width * h * 3 + j + 0] = ((ptr[i + 1]) & 0xf8) + ((ptr[i + 1] >> 5) & 0x07);
-                            dest[surf->width * h * 3 + j + 1] = ((ptr[i + 0] >> 3) & 0x1c) + ((ptr[i + 1] << 5) & 0xe0) + ((ptr[i + 1] >> 1) & 0x3);
-                            dest[surf->width * h * 3 + j + 2] = ((ptr[i + 0] << 3) & 0xf8) + ((ptr[i + 0] >> 2) & 0x07);
-                        }
-                    }
-                }
-                fwrite(dest, 1, size, fp);
-                ituUnlockSurface(surf);
             }
-            else
-            {
-                LOG_ERR "out of memory: %d.\n", size LOG_END
-            }
-            fclose(fp);
+            fwrite(dest, 1, size, fp);
+            ituUnlockSurface(surf);
         }
         else
         {
-            LOG_ERR "open %s fail.\n", filepath LOG_END
+            LOG_ERR "out of memory: %d.\n", size LOG_END
         }
+        fclose(fp);
     }
-    surf->width = w;
-    surf->height = h;
-}
-
-void ituScreenshotRect(ITUSurface* surf, int x, int y, int w, int h, char* filepath)
-{
-    int pos;
-    ITUSurface* tempSurf = NULL;
-
-    ITU_ASSERT_THREAD();
-
-    pos = strlen(filepath) - 3;
-    if (pos < 0)
-        pos = 0;
-
-    if (w == 0)
-        w = surf->width;
-
-    if (h == 0)
-        h = surf->height;
-
-    tempSurf = ituCreateSurface(w, h, 0, surf->format, NULL, 0);
-    if (!tempSurf)
-        goto end;
-
-    ituBitBlt(tempSurf, 0, 0, tempSurf->width, tempSurf->height, surf, x, y);
-
-    if (stricmp(&filepath[pos], "jpg") == 0)
+    else
     {
-        ituJpegSaveFile(tempSurf, filepath);
+        LOG_ERR "open %s fail.\n", filepath LOG_END
     }
-    else if (stricmp(&filepath[pos], "png") == 0)
-    {
-        ituPngSaveFile(tempSurf, filepath);
-    }
-
-end:
-    if (tempSurf)
-        ituDestroySurface(tempSurf);
 }
 
 ITULayer* ituGetLayer(ITUWidget* widget)

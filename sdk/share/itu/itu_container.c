@@ -349,19 +349,6 @@ void ituContainerDraw(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_t
             ituDestroySurface(surf);
         }
     }
-
-    {
-        ITCTree* node;
-
-        for (node = widget->tree.child; node; node = node->sibling)
-        {
-            ITUWidget* child = (ITUWidget*)node;
-            if (child->visible && child->type == ITU_CLIPPER)
-            {
-                ituClipperPostDraw(child, dest, destx, desty, alpha);
-            }
-        }
-    }
 }
 
 void ituContainerOnAction(ITUWidget* widget, ITUActionType action, char* param)

@@ -95,10 +95,9 @@ add_library(itu STATIC
     itu_calendar.c
     itu_checkbox.c
     itu_cfg.h
-    itu_circleprogressbar.c
-    itu_clipper.c
     itu_colorpicker.c
     itu_container.c
+    itu_circleprogressbar.c
     itu_coverflow.c
     itu_curve.c
     itu_effect.c
@@ -140,7 +139,6 @@ add_library(itu STATIC
     itu_slideshow.c
     itu_sprite.c
     itu_spritebutton.c
-    itu_stepwheel.c
     itu_stringset.c
     itu_surface.c
     itu_tablelistbox.c
@@ -150,7 +148,6 @@ add_library(itu STATIC
     itu_trackbar.c
     itu_utility.c
     itu_video.c
-    itu_wavebackground.c
     itu_wheel.c
     itu_wheelbackground.c
     itu_widget.c

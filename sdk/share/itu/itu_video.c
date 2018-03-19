@@ -132,9 +132,9 @@ bool ituVideoUpdate(ITUWidget* widget, ITUEvent ev, int arg1, int arg2, int arg3
 #ifdef CFG_VIDEO_ENABLE        
             if (video->playing && video->filePath[0] != '\0')
             {
-                ItuEnterVideoState();        
-                videoPlayerSetWindow = true;
-                mtal_pb_init(EventHandler);
+            ItuEnterVideoState();        
+            videoPlayerSetWindow = true;
+            mtal_pb_init(EventHandler);
                 strcpy(mtal_spec.srcname, video->filePath);
                 if(video->volume)
                     mtal_spec.vol_level = video->volume;
@@ -176,12 +176,12 @@ bool ituVideoUpdate(ITUWidget* widget, ITUEvent ev, int arg1, int arg2, int arg3
         isVideoWidgetStartPlaying = false;
         if(!isOtherVideoPlaying)
         {
-#ifdef CFG_VIDEO_ENABLE                    
+#ifdef CFG_VIDEO_ENABLE        
             if (video->playing && video->filePath[0] != '\0')
             {
-                ItuEnterVideoState();        
-                videoPlayerSetWindow = true;
-                mtal_pb_init(EventHandler);
+            ItuEnterVideoState();        
+            videoPlayerSetWindow = true;
+            mtal_pb_init(EventHandler);
                 strcpy(mtal_spec.srcname, video->filePath);
                 if(video->volume)
                     mtal_spec.vol_level = video->volume;

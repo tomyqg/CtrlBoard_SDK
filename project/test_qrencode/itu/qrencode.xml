@@ -1,7 +1,7 @@
 ﻿<ITU>
-  <Object type="GUIDesigner.LayerWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="LogoLayer" children="Controls">
-    <Object type="GUIDesigner.BackgroundWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="logoText" children="Controls">
-      <Object type="GUIDesigner.TextWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="Text4" children="Controls">
+  <Object type="GUIDesigner.LayerWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="LogoLayer" children="Controls">
+    <Object type="GUIDesigner.BackgroundWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="logoText" children="Controls">
+      <Object type="GUIDesigner.TextWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="Text4" children="Controls">
         <Property name="Text1" />
         <Property name="Text2" />
         <Property name="Text3" />
@@ -9,32 +9,7 @@
         <Property name="Text5" />
         <Property name="Text6" />
         <Property name="Text7" />
-        <Property name="Text8" />
-        <Property name="Text9" />
-        <Property name="Text10" />
-        <Property name="Text11" />
-        <Property name="Text12" />
-        <Property name="Text13" />
-        <Property name="Text14" />
-        <Property name="Text15" />
-        <Property name="Text16" />
-        <Property name="Text17" />
-        <Property name="Text18" />
-        <Property name="Text19" />
-        <Property name="Text20" />
-        <Property name="Text21" />
-        <Property name="Text22" />
-        <Property name="Text23" />
-        <Property name="Text24" />
-        <Property name="Text25" />
-        <Property name="Text26" />
-        <Property name="Text27" />
-        <Property name="Text28" />
-        <Property name="Text29" />
-        <Property name="Text30" />
-        <Property name="Text31" />
         <Property name="FontIndex">0</Property>
-        <Property name="BoldSize">1</Property>
         <Property name="Hided">False</Property>
         <Property name="Text">Hello QR code!</Property>
         <Property name="BackColor">Transparent</Property>
@@ -44,7 +19,7 @@
         <Property name="Name">Text4</Property>
         <Property name="Size">232, 44</Property>
       </Object>
-      <Object type="GUIDesigner.ButtonWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="BtnShow" children="Controls">
+      <Object type="GUIDesigner.ButtonWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="BtnShow" children="Controls">
         <Property name="Alpha">255</Property>
         <Property name="PixelFormat">RGB565</Property>
         <Property name="Compress">True</Property>
@@ -57,32 +32,7 @@
         <Property name="Text5" />
         <Property name="Text6" />
         <Property name="Text7" />
-        <Property name="Text8" />
-        <Property name="Text9" />
-        <Property name="Text10" />
-        <Property name="Text11" />
-        <Property name="Text12" />
-        <Property name="Text13" />
-        <Property name="Text14" />
-        <Property name="Text15" />
-        <Property name="Text16" />
-        <Property name="Text17" />
-        <Property name="Text18" />
-        <Property name="Text19" />
-        <Property name="Text20" />
-        <Property name="Text21" />
-        <Property name="Text22" />
-        <Property name="Text23" />
-        <Property name="Text24" />
-        <Property name="Text25" />
-        <Property name="Text26" />
-        <Property name="Text27" />
-        <Property name="Text28" />
-        <Property name="Text29" />
-        <Property name="Text30" />
-        <Property name="Text31" />
         <Property name="FontIndex">0</Property>
-        <Property name="BoldSize">1</Property>
         <Property name="Action01">None,Press,,</Property>
         <Property name="Action02">None,Press,,</Property>
         <Property name="Action03">None,Press,,</Property>
@@ -116,7 +66,7 @@
         <Property name="Size">147, 72</Property>
         <Property name="TabIndex">2</Property>
       </Object>
-      <Object type="GUIDesigner.ButtonWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="BtnClear" children="Controls">
+      <Object type="GUIDesigner.ButtonWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="BtnClear" children="Controls">
         <Property name="Alpha">255</Property>
         <Property name="PixelFormat">RGB565</Property>
         <Property name="Compress">True</Property>
@@ -129,32 +79,7 @@
         <Property name="Text5" />
         <Property name="Text6" />
         <Property name="Text7" />
-        <Property name="Text8" />
-        <Property name="Text9" />
-        <Property name="Text10" />
-        <Property name="Text11" />
-        <Property name="Text12" />
-        <Property name="Text13" />
-        <Property name="Text14" />
-        <Property name="Text15" />
-        <Property name="Text16" />
-        <Property name="Text17" />
-        <Property name="Text18" />
-        <Property name="Text19" />
-        <Property name="Text20" />
-        <Property name="Text21" />
-        <Property name="Text22" />
-        <Property name="Text23" />
-        <Property name="Text24" />
-        <Property name="Text25" />
-        <Property name="Text26" />
-        <Property name="Text27" />
-        <Property name="Text28" />
-        <Property name="Text29" />
-        <Property name="Text30" />
-        <Property name="Text31" />
         <Property name="FontIndex">0</Property>
-        <Property name="BoldSize">1</Property>
         <Property name="Action01">None,Press,,</Property>
         <Property name="Action02">None,Press,,</Property>
         <Property name="Action03">None,Press,,</Property>
@@ -187,14 +112,13 @@
         <Property name="Size">147, 72</Property>
         <Property name="TabIndex">4</Property>
       </Object>
-      <Object type="GUIDesigner.IconWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="Icon" children="Controls">
+      <Object type="GUIDesigner.IconWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="Icon" children="Controls">
         <Property name="PixelFormat">RGB565</Property>
         <Property name="Compress">True</Property>
         <Property name="External">False</Property>
         <Property name="ExternalImage">False</Property>
         <Property name="Stretch">False</Property>
         <Property name="FitToRectange">False</Property>
-        <Property name="CutByRectange">False</Property>
         <Property name="Angle">0</Property>
         <Property name="Alpha">255</Property>
         <Property name="FilePath">
@@ -209,7 +133,7 @@
         <Property name="Name">Icon</Property>
         <Property name="Size">401, 357</Property>
       </Object>
-      <Object type="GUIDesigner.TableIconListBoxWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="TableIconListBox1" children="Controls">
+      <Object type="GUIDesigner.TableIconListBoxWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="TableIconListBox1" children="Controls">
         <Property name="ItemHeight">18</Property>
         <Property name="PageIndexTarget" />
         <Property name="PageCountTarget" />
@@ -217,7 +141,7 @@
         <Property name="BackAlpha">255</Property>
         <Property name="ScrollDelay">3</Property>
         <Property name="StopDelay">30</Property>
-        <Property name="TotalFrame">30</Property>
+        <Property name="TotalFrame">10</Property>
         <Property name="Draggable">True</Property>
         <Property name="HasLongPress">False</Property>
         <Property name="ItemCount">100</Property>
@@ -247,7 +171,7 @@
         <Property name="Size">8, 0</Property>
         <Property name="TabIndex">7</Property>
       </Object>
-      <Object type="GUIDesigner.TextBoxWidget, GUIDesigner, Version=1.0.6569.19196, Culture=neutral, PublicKeyToken=null" name="TextBox" children="Controls">
+      <Object type="GUIDesigner.TextBoxWidget, GUIDesigner, Version=1.0.6186.24767, Culture=neutral, PublicKeyToken=null" name="TextBox" children="Controls">
         <Property name="Text1" />
         <Property name="Text2" />
         <Property name="Text3" />
@@ -255,32 +179,7 @@
         <Property name="Text5" />
         <Property name="Text6" />
         <Property name="Text7" />
-        <Property name="Text8" />
-        <Property name="Text9" />
-        <Property name="Text10" />
-        <Property name="Text11" />
-        <Property name="Text12" />
-        <Property name="Text13" />
-        <Property name="Text14" />
-        <Property name="Text15" />
-        <Property name="Text16" />
-        <Property name="Text17" />
-        <Property name="Text18" />
-        <Property name="Text19" />
-        <Property name="Text20" />
-        <Property name="Text21" />
-        <Property name="Text22" />
-        <Property name="Text23" />
-        <Property name="Text24" />
-        <Property name="Text25" />
-        <Property name="Text26" />
-        <Property name="Text27" />
-        <Property name="Text28" />
-        <Property name="Text29" />
-        <Property name="Text30" />
-        <Property name="Text31" />
         <Property name="FontIndex">0</Property>
-        <Property name="BoldSize">1</Property>
         <Property name="ShowCursor">False</Property>
         <Property name="TextColor">WindowText</Property>
         <Property name="BackAlpha">255</Property>
@@ -326,13 +225,11 @@
       <Property name="GradientColor">
       </Property>
       <Property name="GradientMode">None</Property>
-      <Property name="Alpha">255</Property>
       <Property name="Stretch">False</Property>
       <Property name="Angle">0</Property>
       <Property name="TransformType">None</Property>
       <Property name="TransformX">100</Property>
       <Property name="TransformY">100</Property>
-      <Property name="OriginalSize">0, 0</Property>
       <Property name="Hided">False</Property>
       <Property name="BackColor">255, 255, 192</Property>
       <Property name="Location">0, 0</Property>

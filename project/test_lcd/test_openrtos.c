@@ -8,7 +8,7 @@ int main(void)
 {
     pthread_t task;
     pthread_attr_t attr;
-    printf("main\r\n");
+    
     pthread_attr_init(&attr);
     pthread_create(&task, &attr, TestFunc, NULL);
 

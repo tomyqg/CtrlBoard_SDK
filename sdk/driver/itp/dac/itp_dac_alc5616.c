@@ -82,7 +82,7 @@ static void I2C_common_write_word(unsigned char RegAddr, unsigned short d)
     }
     if(success == 0) {
     	printf("ALC5616# IIC Write Fail!\n");
-    	//while(1) { usleep(500000); }
+    	while(1) { usleep(500000); }
     }
     ithWriteRegMaskA(ITH_GPIO_BASE | 0xD0, (0 << 28), (0x3 << 28)); /* IIC: external APB IIC */
 }
@@ -109,7 +109,7 @@ static unsigned short I2C_common_read_word(unsigned char RegAddr)
     }
     if(success == 0) {
         printf("ALC5616# IIC Write Fail!\n");
-       // while(1) { usleep(500000); }
+        while(1) { usleep(500000); }
     }
     ithWriteRegMaskA(ITH_GPIO_BASE | 0xD0, (0 << 28), (0x3 << 28)); /* IIC: external APB IIC */
 

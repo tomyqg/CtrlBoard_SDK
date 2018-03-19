@@ -168,10 +168,9 @@ bool ituExecActions(struct ITUWidgetTag* widget, ITUAction* actions, ITUEvent ev
                 ituScene->actionQueueLen++;
                 
                 if (ev != ITU_EVENT_TIMER && ev != ITU_EVENT_SYNC)
-                {
                     widget->dirty = true;
-                    result = true;
-                }
+
+                result = true;
             }
             else
             {

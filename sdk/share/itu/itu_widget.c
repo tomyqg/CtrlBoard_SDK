@@ -137,21 +137,21 @@ bool ituWidgetUpdateImpl(ITUWidget* widget, ITUEvent ev, int arg1, int arg2, int
             int x = arg2 - widget->rect.x;
             int y = arg3 - widget->rect.y;
 
-            if (ituWidgetIsInside(widget, x, y))
+            while (--childCount >= 0)
             {
-                while (--childCount >= 0)
-                {
-                    ITUWidget *child = children[childCount];
+                ITUWidget *child = children[childCount];
 
-                    if (ituWidgetIsVisible(child))
-                    {
-                        result |= ituWidgetUpdate(child, ev, arg1, x, y);
-                        if (result)
-                            break;
-                    }
+                if (ituWidgetIsVisible(child))
+                {
+                    result |= ituWidgetUpdate(child, ev, arg1, x, y);
+                    if (result)
+                        break;
                 }
-                if (!result)
-                    result = ituWidgetOnPress(widget, ev, arg1, x, y);
+            }
+
+            if (!result && ituWidgetIsInside(widget, x, y))
+            {
+                result = ituWidgetOnPress(widget, ev, arg1, x, y);
             }
         }
     }
@@ -288,13 +288,9 @@ void ituWidgetDrawImpl(ITUWidget* widget, ITUSurface* dest, int x, int y, uint8_
     for (node = widget->tree.child; node; node = node->sibling)
     {
         ITUWidget* child = (ITUWidget*)node;
-        if (child->visible)
-        {
-            if (ituWidgetIsOverlapClipping(child, dest, x, y))
-                ituWidgetDraw(node, dest, x, y, alpha);
-            else
-                ituDirtyWidget(child, false);
-        }
+        if (child->visible && ituWidgetIsOverlapClipping(child, dest, x, y))
+            ituWidgetDraw(node, dest, x, y, alpha);
+
         child->dirty = false;
     }
     ituSurfaceSetClipping(dest, prevClip.x, prevClip.y, prevClip.width, prevClip.height);
@@ -1403,75 +1399,4 @@ void ituWidgetHideImpl(ITUWidget* widget, ITUEffectType effect, int step)
     widget->effects[ITU_STATE_HIDING] = oldEffect;
     widget->effects[ITU_STATE_NORMAL] = oldStep;
 
-}
-void ituWidgetToTopImpl(ITUWidget* widget)
-{
-    ITCTree* parent;
-    assert(widget);
-    ITU_ASSERT_THREAD();
-
-    parent = widget->tree.parent;
-
-    if (parent)
-    {
-        itcTreeRemove(widget);
-        itcTreePushFront(parent, widget);
-    }
-}
-
-void ituWidgetToBottomImpl(ITUWidget* widget)
-{
-    ITCTree* parent;
-    assert(widget);
-    ITU_ASSERT_THREAD();
-
-    parent = widget->tree.parent;
-
-    if (parent)
-    {
-        itcTreeRemove(widget);
-        itcTreePushBack(parent, widget);
-    }
-}
-
-void ituWidgetMoveUpImpl(ITUWidget* widget)
-{
-    ITCTree* parent;
-    assert(widget);
-    ITU_ASSERT_THREAD();
-
-    parent = widget->tree.parent;
-
-    if (parent)
-    {
-        ITCTree* child = parent->child;
-        if (child == (ITCTree*)widget)
-            return;
-
-        while (child)
-        {
-            ITCTree* sibling = child->sibling;
-            if (sibling == (ITCTree*)widget)
-            {
-                itcTreeSwap(child, sibling);
-                return;
-            }
-            child = sibling;
-        }
-    }
-}
-
-void ituWidgetMoveDownImpl(ITUWidget* widget)
-{
-    ITCTree* parent;
-    ITCTree* sibling;
-    assert(widget);
-    ITU_ASSERT_THREAD();
-
-    parent = widget->tree.parent;
-    sibling = widget->tree.sibling;
-    if (parent && sibling)
-    {
-        itcTreeSwap(widget, sibling);
-    }
 }

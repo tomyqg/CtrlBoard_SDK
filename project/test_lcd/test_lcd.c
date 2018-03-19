@@ -11,7 +11,7 @@ void* TestFunc(void* arg)
     const uint16_t colors[] = { ITH_RGB565(255, 0, 0), ITH_RGB565(0, 255, 0), ITH_RGB565(0, 0, 255) };
 
     itpInit();
-	printf("kenny test\r\n");
+
 #ifdef CFG_LCD_MULTIPLE
     ioctl(ITP_DEVICE_SCREEN, ITP_IOCTL_RESET, (void*)0);
 #endif

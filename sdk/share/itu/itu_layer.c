@@ -223,12 +223,6 @@ void ituLayerLoad(ITULayer* layer, uint32_t base)
     ituWidgetSetOnAction(layer, ituLayerOnAction);
 }
 
-static void LayerHideDelay(int arg)
-{
-    ITULayer* leaveLayer = (ITULayer*)arg;
-    ituWidgetSetVisible(leaveLayer, false);
-}
-
 static void LayerGoto(int arg)
 {
     int* args = (int*) arg;
@@ -242,20 +236,12 @@ static void LayerGoto(int arg)
         if (ituWidgetIsVisible(node))
         {
             ITULayer* l = (ITULayer*)node;
-
-            if (l->hideDelay > 0)
-            {
-                ituSceneExecuteCommand(ituScene, l->hideDelay, LayerHideDelay, (int)l);
-            }
-            else
-            {
-                ituWidgetSetVisible(l, false);
-            }
+            ituWidgetSetVisible(l, false);
         }
     }
-    ituWidgetSetCustomData(leaveLayer, -100);
 
     ituWidgetSetVisible(layer, true);
+	ituWidgetSetCustomData(leaveLayer, -100);
 	ituWidgetSetCustomData(layer, 1);
     ituExecActions((ITUWidget*)layer, layer->actions, ITU_EVENT_ENTER, leaveLayer ? (int)leaveLayer->widget.name : 0);
     ituExecActions((ITUWidget*)layer, layer->actions, ITU_EVENT_DELAY, 0);
